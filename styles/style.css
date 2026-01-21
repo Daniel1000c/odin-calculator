@@ -1,0 +1,38 @@
+/**General Formatting**/
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100vw;
+}
+
+/*Calculator formatting*/
+
+/*Format calculator container*/
+.calculator-container {
+    background-color: red;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 400px;
+    height: auto;
+    padding: 2em;
+    border-radius: 20px;
+    gap: 20px;
+}
+
+/*Format calculator input field*/
+.calc-output {
+    background-color: black;
+    width: 300px;
+    height: 50px;
+    border-radius: 10px;
+}
