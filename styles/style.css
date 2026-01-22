@@ -6,18 +6,23 @@
 }
 
 body {
+    background-color: whitesmoke;
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
     height: 100vh;
     width: 100vw;
+    gap: 100px;
 }
 
 /*Calculator formatting*/
 
 /*Format calculator container*/
 .calculator-container {
-    background-color: red;
+    background-color: white;
+    -webkit-box-shadow: 0px 2px 24px 5px rgba(0,0,0,0.5); 
+    box-shadow: 0px 2px 24px 5px rgba(0,0,0,0.5);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -31,8 +36,37 @@ body {
 
 /*Format calculator input field*/
 .calc-output {
-    background-color: black;
+    background-color: whitesmoke;
     width: 300px;
-    height: 50px;
-    border-radius: 10px;
+    height: 100px;
+    border: 2px solid black;
+    border-radius: 5px;
+}
+
+.calc-btn-container {
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.operational-btns,
+.main-btn,
+.operation-btn {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    width: 100%;
+}
+
+
+/*Format buttons*/
+button {
+    display: inline-block;
+    width: 100px;
+    padding: 1em;
+    font-size: 1.1rem;
+    font-weight: bold;
+    font-family: monospace;
 }
