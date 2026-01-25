@@ -23,7 +23,13 @@ function multiply(firstNum, secondNum) {
 }
 //Divide
 function divide(firstNum, secondNum) {
-    return firstNum / secondNum;
+    //Create if statement if user divides by zero
+    if(secondNum === 0 || isNaN(secondNum)) {
+        //Return an error
+        alert("Can't Divide by 0, No sneaky moves:)") ;
+    } else {
+        return firstNum / secondNum;
+    }
 }
 //Modulus
 function modulus(firstNum, secondNum) {
@@ -33,7 +39,9 @@ function modulus(firstNum, secondNum) {
 /*
     INPUT VARIABLES
 */
-let firstInput, secondInput, operator;
+let firstInput = '';
+let secondInput = '';
+let operator = null;
 
 /*
     OPERATION FUNCTION
@@ -73,32 +81,99 @@ buttons.forEach(button => {
         const operatorClicked = this.dataset.operator;
         const action = this.dataset.action;
 
-        //Create if statement to handle number input
+        //Check if number input
         if(number !== undefined) {
-            //If no operator check for first number
-            if(!operator) {
-                //Assign number to first input
-                if(!firstInput) {
-                    firstInput = number
-                } else {
-                    //Append to first input if exists
+            //Handle decimal separately
+            if(number === '.' && !operator) {
+                //Prevent multiple decimals in first input
+                if(!firstInput.includes('.')) {
                     firstInput += number;
                 }
-
-                //Add first input to display
-                console.log(display.textContent = firstInput, 'firstinput');
-            } else {
-                //Check for second input
-                if(!secondInput) {
-                    secondInput = number;
-                } else {
-                    //Append to second input if exists
-                    secondInput +=number
+            } else if(number === '.' && operator) {
+                //Prevent multiple decimals in second input
+                if(!secondInput.includes('.')) {
+                    secondInput += number;
                 }
+            } else {
+                //Regular number input
+                if(!operator) {
+                    firstInput += number;
+                } else {
+                    secondInput += number;
+                }
+            }
 
-                //Add second input to display
-                console.log(display.textContent = secondInput, 'second input');
+            //Update display
+            display.textContent = firstInput + (operator ? ' ' + operator + ' ' + secondInput : '');
+        }
+
+        //Create if statement for action
+        if(action === 'equals') {
+            //Check if user presses equal sign early
+            if(!firstInput || !secondInput || !operator) return;
+
+            //Turn first and second input into numbers
+            firstNumInput = +firstInput;
+            secondNumInput = +secondInput;
+
+            //Call the operation function in result variable
+            const result = operation(operator, firstNumInput, secondNumInput);
+
+            //Show result in display container
+            display.textContent = result;
+
+            if(typeof result === 'number') {
+                //Set result to first input, clear out second input and set operator to null
+                firstInput = result.toString();
+                secondInput = '';
+                operator = null;    
+            } else {
+                secondInput = '';
+                operator = null;
             }
         }
+
+        //Create if statement if action equals to delete
+        if(action === 'delete') {
+
+            if(!operator) {
+                firstInput = firstInput.slice(0,-1);
+                display.textContent = firstInput || '0';
+            } else {
+                secondInput = secondInput.slice(0,-1);
+                display.textContent = secondInput;
+            }   
+        }
+
+        //Create if statement if action equals to clear
+        if(action === 'clear') {
+            //Rest variables and display
+            firstInput = '';
+            secondInput = '';
+            operator = null;
+            display.textContent = '';
+        }
+
+        //Create if statement for operator input
+        if(operatorClicked !== undefined) {
+
+            //Check if first, second input & operator are assigned 
+            if(firstInput && operator && secondInput) {
+                //Convert first and second input into numbers
+                const firstNumberInput = +firstInput;
+                const secondNumberInput = +secondInput;
+
+                //Calculate result 
+                const finalResult = operation(operator, firstNumberInput, secondNumberInput);
+
+                firstInput = finalResult.toString();
+                secondInput = '';
+            }
+
+            //Assign button value to operator
+            operator = operatorClicked;
+
+            display.textContent = firstInput + " " + operator;
+        }        
     });
 });
