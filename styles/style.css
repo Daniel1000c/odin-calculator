@@ -60,6 +60,10 @@ body {
     width: 100%;
 }
 
+.operational-btns {
+    gap: 50px;
+}
+
 
 /*Format buttons*/
 button {
