@@ -1,4 +1,11 @@
 /*
+    CALCULATOR ELEMENTS
+*/
+
+const display = document.getElementById('output');
+const buttons = document.querySelectorAll('button');
+
+/*
     FUNCTIONS
 */
 
@@ -49,7 +56,49 @@ function operation(operation, firstNumber, secondNumber) {
         case '%':
             //Call modulus function
             return modulus(firstNumber, secondNumber);
+        default: 
+            return alert('ERROR!!! Operator not recognized.');
     }
 }
 
-// console.log(operation('/',10,4))
+
+/*
+    EVENT LISTENERS
+*/
+
+buttons.forEach(button => {
+    ///Create button listener for each button
+    button.addEventListener('click', function() {
+        const number = this.dataset.number;
+        const operatorClicked = this.dataset.operator;
+        const action = this.dataset.action;
+
+        //Create if statement to handle number input
+        if(number !== undefined) {
+            //If no operator check for first number
+            if(!operator) {
+                //Assign number to first input
+                if(!firstInput) {
+                    firstInput = number
+                } else {
+                    //Append to first input if exists
+                    firstInput += number;
+                }
+
+                //Add first input to display
+                console.log(display.textContent = firstInput, 'firstinput');
+            } else {
+                //Check for second input
+                if(!secondInput) {
+                    secondInput = number;
+                } else {
+                    //Append to second input if exists
+                    secondInput +=number
+                }
+
+                //Add second input to display
+                console.log(display.textContent = secondInput, 'second input');
+            }
+        }
+    });
+});
