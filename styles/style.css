@@ -39,6 +39,13 @@ body {
     background-color: whitesmoke;
     width: 300px;
     height: 100px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+    font-size: 2rem;
+    font-family: monospace;
+    font-weight: bolder;
+    padding: 1rem;
     border: 2px solid black;
     border-radius: 5px;
 }
