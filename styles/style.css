@@ -6,7 +6,7 @@
 }
 
 body {
-    background-color: whitesmoke;
+    background-color: antiquewhite;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -20,7 +20,7 @@ body {
 
 /*Format calculator container*/
 .calculator-container {
-    background-color: white;
+    background-color: beige;
     -webkit-box-shadow: 0px 2px 24px 5px rgba(0,0,0,0.5); 
     box-shadow: 0px 2px 24px 5px rgba(0,0,0,0.5);
     display: flex;
